@@ -320,7 +320,7 @@ module Capistrano
           end
 
           def decompress_remote_file
-            run "cd #{configuration[:releases_path]} && #{decompress(remote_filename).join(" ")} && rm #{remote_filename}"
+            run "cd #{configuration[:releases_path]} && #{decompress(remote_filename).join(" ")} && rm -rf #{remote_filename}"
           end
 
           # Distributes the file to the remote servers
