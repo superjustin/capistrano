@@ -92,7 +92,7 @@ namespace :deploy do
       if manifest_content != ""
         current_assets = parse_manifest(manifest_content)
         logger.info "Updating mtimes for ~#{current_assets.count} assets..."
-        put current_assets.map{|a| "#{shared_path}/#{shared_assets_prefix}/#{a}" }.join("\n"), "#{deploy_to}/TOUCH_ASSETS", :via => :scp
+        put current_assets.map{|a| "#{shared_path}/#{shared_assets_prefix}/#{a}" }.join("\n"), "#{deploy_to}/TOUCH_ASSETS", :via => :sftp
         run <<-CMD.compact
           cat #{deploy_to.shellescape}/TOUCH_ASSETS | while read asset; do
             touch -c -- "$asset";
